@@ -2,17 +2,33 @@
 {% block content %}
 {% load static %}
 
-{% for product in products %}   
-<div class="item">
-        <div class="block-4 text-center">
-          <figure class="block-4-image">
-            <img src="{{ product.image.url }}" alt="Image placeholder" class="img-fluid">
-          </figure>
-          <div class="block-4-text p-4">
-            <h3><a href="#">{{ product.title }}</a></h3>
-            <p class="mb-0">{{ product.description }}</p>
-            <p class="text-primary font-weight-bold">₹{{ product.price }}</p>
-          </div>
+    <div class="row row-flex">
+        {% for product in products %}   
+        
+            <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
+                
+                <div class="panel-body">
+     
+			<div class="product"><img src="{{ product.image.url }}" class="img-fluid" alt=""></div>
+                    
+                    <h3 class="text-center">{{ product.title }}</h3>
+                    <p class="product-description text-center">{{ product.description }}</p>
+                    <p class="text-center">₹{{ product.price }}</p>
+                    
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input name="quantity" type="number" min="1" max="999" class="form-control form-size" placeholder="Quantity">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit">Add</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-</div>
+    <div class="find-out">
+        <a class="btn btn-register btn-call" data-toggle="modal" data-target="#myModal">Find Out More</a>
+    </div>
 {% endblock %}

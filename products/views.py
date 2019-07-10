@@ -1,43 +1,13 @@
 # from django.views import ListView
-from django.views.generic import ListView, DetailView
-from django.shortcuts import render, get_object_or_404
-
 from .models import Product
+from django.shortcuts import render, get_object_or_404, redirect
+# Create your views here.
 
+def all_products(request):
+    products = Product.objects.all()
+    return render(request, "product-list.html", {"products": products})
 
-class ProductListView(ListView):
-    queryset = Product.objects.all()
-    template_name = "list.html"
+def product_detail(request,id):
+    product = get_object_or_404(Product, id=id)
+    return render(request, "product-detail.html", {"product": product})
 
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super(ProductListView, self).get_context_data(*args, **kwargs)
-    #     print(context)
-    #     return context
-
-
-def product_list_view(request):
-    queryset = Product.objects.all()
-    context = {
-        'object_list': queryset
-    }
-    return render(request, "list.html", context)
-
-
-class ProductDetailView(DetailView):
-    queryset = Product.objects.all()
-    template_name = "detail.html"
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
-        print(context)
-        # context['abc'] = 123
-        return context
-
-
-def product_detail_view(request, pk=None, *args, **kwargs):
-    #instance = Product.objects.get(pk=pk) #id
-    instance = get_object_or_404(Product, pk=pk)
-    context = {
-        'object': instance
-    }
-    return render(request, "detail.html", context)

@@ -4,7 +4,7 @@ from django.urls import reverse
 from .forms import UserLoginForm, UserRegistrationForm
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -17,11 +17,11 @@ def logout(request):
 def login(request):
     if request.method == 'POST':
         user_form = UserLoginForm(request.POST)
-        if user_form.is_valid():
-            user = auth.authenticate(username=request.POST['username_or_email'],
-                                     password=request.POST['password'])
-
-            if user:
+        #if user_form.is_valid():
+        user = auth.authenticate(username=request.POST.get('username'),password=request.POST.get('password'))
+        print(user)
+        if user:         
+            if user.is_active:
                 auth.login(request, user)
                 messages.error(request, "You have successfully logged in")
 
@@ -34,6 +34,7 @@ def login(request):
                 user_form.add_error(None, "Your username or password are incorrect")
     else:
         user_form = UserLoginForm()
+        print('user not found')
 
     args = {'user_form': user_form, 'next': request.GET.get('next', '')}
     return render(request, 'login.html', args)
@@ -63,7 +64,8 @@ def register(request):
 
     args = {'user_form': user_form}
     return render(request, 'register.html', args)
-    
-@login_required
+
+''' 
+@login_required'''
 def profile(request):
     return render(request, 'profile.html')
