@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 def all_products(request):
     products = Product.objects.all()
-    return render(request, "product-list.html", {"products": products})
+    return render(request, "product-list.html", {"products": products,"text":'Featured Products'})
 
 def product_detail(request,id):
     product = get_object_or_404(Product, id=id)

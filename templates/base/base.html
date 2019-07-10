@@ -25,9 +25,9 @@
         <div class="container">
           <div class="row align-items-center">
             <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-              <form action="" class="site-block-top-search">
+              <form action="{% url 'search' %}" class="site-block-top-search" method="get" role="search">
                 <span class="icon icon-search2"></span>
-                  <input type="text" class="form-control border-0" placeholder="Search">
+                  <input type="text" class="form-control border-0" placeholder="Search" name="q">
               </form>
             </div>
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
@@ -38,13 +38,6 @@
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
                 <ul>
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
-                    {%  else %}
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
-                    {% endif %}
                   <li><a href="#"><span class="icon icon-person"></span></a></li>
                   <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                   <li>
@@ -99,7 +92,6 @@
     <div class="site-section block-3 site-blocks-2 bg-light">
       <div class="row">
         <div class="col-md-12">
-          <div class="nonloop-block-3 owl-carousel">
          
           </div>
         </div>
