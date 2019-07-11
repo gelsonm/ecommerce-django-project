@@ -24,8 +24,10 @@ urlpatterns = [
     #path(r'^$', home_view,name='index'),
     path('', include('home.urls')),
     path('',include('products.urls')),
-    path('cart/',include('carts.urls')),
     path('',include('search.urls')),
+    path('',include('accounts.urls')),
+    path('cart/',include('carts.urls')),
+    path('cart/checkout/',include('checkout.urls')),
     path('',include('accounts.urls')),
     path('admin/', admin.site.urls),
 ]

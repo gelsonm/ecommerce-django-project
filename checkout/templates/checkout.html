@@ -1,0 +1,147 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block content %}
+      <div class="site-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 mb-5 mb-md-0">
+              <h2 class="h3 mb-3 text-black">Billing Details</h2>
+              <div class="p-3 p-lg-5 border">
+                    <div class="form-group">
+			<div class="col-md-12">
+                            <label for="c_name" class="text-black">{{ order_form.full_name.label_tag}}<span class="text-danger"> *</span></label>
+				{{ order_form.full_name }}
+			</div>                     
+		   </div>
+                          <div class="form-group row">
+                            <div class="col-md-12">
+                              <label for="c_companyname" class="text-black">{{ order_form.phone_number.label_tag}} </label>
+				{{ order_form.phone_number }}
+                        	 </div>
+                          </div>
+			<div class="form-group">
+			<div class="col-md-12">
+                            <label for="c_name" class="text-black">{{ order_form.country.label_tag}}<span class="text-danger"> *</span></label>
+				{{ order_form.country }}
+			</div>                     
+		   </div>
+        <div class="form-group">
+			<div class="col-md-12">
+                            <label for="c_name" class="text-black">{{ order_form.pincode.label_tag}}<span class="text-danger"> *</span></label>
+				{{ order_form.pincode }}
+			</div>                     
+		   </div>
+		<div class="form-group">
+			<div class="col-md-12">
+                            <label for="c_name" class="text-black">{{ order_form.town_or_city.label_tag}}<span class="text-danger"> *</span></label>
+				{{ order_form.town_or_city }}
+			</div>                     
+		   </div>
+        <div class="form-group">
+		<div class="col-md-12">
+                            <label for="c_name" class="text-black">{{ order_form.street_address_1.label_tag}}<span class="text-danger"> *</span></label>
+				{{ order_form.street_address_1}}
+				
+			</div>                     
+		   </div>
+            <div class="form-group">
+		<div class="col-md-12">
+                            <label for="c_name" class="text-black">{{ order_form.street_address_2.label_tag}}<span class="text-danger"> *</span></label>
+				{{ order_form.street_address_2 }}
+			</div>                     
+		   </div>
+  
+                <div class="form-group">
+                  <label for="c_ship_different_address" class="text-black" data-toggle="collapse" href="#ship_different_address" role="button" aria-expanded="false" aria-controls="ship_different_address"><input type="checkbox" value="1" id="c_ship_different_address"> Ship To A Different Address?</label>
+                  <div class="collapse" id="ship_different_address">
+                    <div class="py-2">
+                      <div class="form-group">
+                            {{ order_form.as_p }}
+                      </div>
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div class="form-group">
+                  <label for="c_order_notes" class="text-black">Order Notes</label>
+                  <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
+                </div>
+  
+              </div>
+            </div>
+            <div class="col-md-6">
+              
+              <div class="row mb-5">
+                <div class="col-md-12">
+                  <h2 class="h3 mb-3 text-black">Your Order</h2>
+                  <div class="p-3 p-lg-5 border">
+                    <table class="table site-block-order-table mb-5">
+                      <thead>
+                        <th>Product</th>
+                        <th>Total</th>
+                      </thead>
+                      <tbody>
+                        {% for product in cart_obj.products.all %}
+                        <tr>
+                          <td>{{ product.title}} <strong class="mx-2">x</strong> 1</td>
+                          <td>{{ product.price }}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                          <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+                          <td class="text-black">{{ cart_obj.subtotal }}</td>
+                        </tr>
+                        <tr>
+                          <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                          <td class="text-black font-weight-bold"><strong>{{ cart_obj.total }}</strong></td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+  
+                    <div class="border p-3 mb-3">
+                      <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Direct Bank Transfer</a></h3>
+  
+                      <div class="collapse" id="collapsebank">
+                        <div class="py-2">
+                          <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="border p-3 mb-3">
+                      <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">Cheque Payment</a></h3>
+  
+                      <div class="collapse" id="collapsecheque">
+                        <div class="py-2">
+                          <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="border p-3 mb-5">
+                      <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal" role="button" aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
+  
+                      <div class="collapse" id="collapsepaypal">
+                        <div class="py-2">
+                          <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="form-group">
+                        <a href="{% url 'index' %}"> <button class="btn btn-primary btn-lg py-3 btn-block">Place Order</button></a>
+                    </div>
+  
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+          <!-- </form> -->
+        </div>
+      </div>
+{% endblock %}

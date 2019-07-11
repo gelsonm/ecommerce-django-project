@@ -7,3 +7,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 def home_view(request):
     featured = Product.objects.all().featured()
     return render(request,"index.html",{'featured':featured,'text':'Featured'})
+
+def about(request):
+    return render(request,"about.html")
+
