@@ -21,8 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     #url('', all_products, name='index'),
-    #url(r'^$', home_page),
-    #path('', include('home.urls')),
+    #path(r'^$', home_view,name='index'),
+    path('', include('home.urls')),
     path('',include('products.urls')),
     path('cart/',include('carts.urls')),
     path('',include('search.urls')),
@@ -30,18 +30,17 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-
 '''
 urlpatterns = [
-    url(r'^$', home_page),
-    url(r'^about/$', about_page),
-    url(r'^contact/$', contact_page),
-    url(r'^login/$', login_page),
-    url(r'^register/$', register_page),
-    url(r'^products/$', ProductListView.as_view()),
-    url(r'^products-fbv/$', product_list_view),
-    url(r'^products/(?P<pk>\d+)/$', ProductDetailView.as_view()),
-    url(r'^products-fbv/(?P<pk>\d+)/$', product_detail_view),
+    #url(r'^$', home_page),
+    #url(r'^about/$', about_page),
+    #url(r'^contact/$', contact_page),
+    #url(r'^login/$', login_page),
+    #url(r'^register/$', register_page),
+    #url(r'^products/$', ProductListView.as_view()),
+    #url(r'^products-fbv/$', product_list_view),
+    #url(r'^products/(?P<pk>\d+)/$', ProductDetailView.as_view()),
+    #url(r'^products-fbv/(?P<pk>\d+)/$', product_detail_view),
     url(r'^admin/', admin.site.urls),
 ]
 '''

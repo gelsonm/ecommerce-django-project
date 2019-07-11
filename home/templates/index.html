@@ -16,19 +16,35 @@
       </div>
     </div>
 </div>
-<div class="site-section block-3 site-blocks-2 bg-light">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-7 site-section-heading text-center pt-4">
-                <h2>Featured Products</h2>
+{% if featured %}
+    <div class="site-section block-3 site-blocks-2 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7 site-section-heading text-center pt-4">
+                        <h2>{{ text }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nonloop-block-3 owl-carousel">
+                        {% for feature in featured %}
+                        <div class="item">
+                            <div class="block-4 text-center">
+                                <figure class="block-4-image">
+                                    <img src="{{ feature.image.url }}" alt="Image placeholder" class="img-fluid">
+                                </figure>
+                                <div class="block-4-text p-4">
+                                    <h3><a href="{{ feature.get_absolute_url }}">{{ feature.title }}</a></h3>
+                                    <p class="mb-0">{{ feature.description }}</p>
+                                    <p class="text-primary font-weight-bold">₹{{ feature.price }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row row-flex">
-            {% include 'list.html' %}   
-        </div>
     </div>
-    <div class="find-out">
-        <a class="btn btn-register btn-call" data-toggle="modal" data-target="#myModal">Find Out More</a>
-    </div>
-</div>
+{% endif %}
 {% endblock %}

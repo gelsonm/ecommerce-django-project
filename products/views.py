@@ -3,9 +3,13 @@ from .models import Product
 from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 
+def featured_products(request):
+    products = Product.objects.all().featured()
+    return render(request, "product-list.html", {"products": products,"text":'Featured Products'})
+
 def all_products(request):
     products = Product.objects.all()
-    return render(request, "product-list.html", {"products": products,"text":'Featured Products'})
+    return render(request, "product-list.html", {"products": products,"text":'All'})
 
 def product_detail(request,id):
     product = get_object_or_404(Product, id=id)

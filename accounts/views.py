@@ -14,24 +14,24 @@ def logout(request):
     return redirect(reverse('index'))
 
 
-def login(request):
+def user_login(request):
     if request.method == 'POST':
         user_form = UserLoginForm(request.POST)
         #if user_form.is_valid():
-        user = auth.authenticate(username=request.POST.get('username'),password=request.POST.get('password'))
+        user =authenticate(username=request.POST.get('username'),
+                                password=request.POST.get('password'))
         print(user)
-        if user:         
-            if user.is_active:
-                auth.login(request, user)
-                messages.error(request, "You have successfully logged in")
-
+        if user:
+                login(request, user)
+                messages.success(request, "You have successfully logged in")
+                
                 if request.GET and request.GET['next'] !='':
                     next = request.GET['next']
                     return HttpResponseRedirect(next)
                 else:
-                    return redirect(reverse('profile'))
-            else:
-                user_form.add_error(None, "Your username or password are incorrect")
+                    return redirect('index')
+        else:
+            messages.error(request, "Log in Unsuccessful!")
     else:
         user_form = UserLoginForm()
         print('user not found')
@@ -44,10 +44,8 @@ def register(request):
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
             user_form.save()
-
             user = auth.authenticate(username=request.POST.get('username'),
                                      password=request.POST.get('password1'))
-
             if user:
                 auth.login(request, user)
                 messages.success(request, "You have successfully registered")

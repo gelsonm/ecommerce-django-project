@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Django Shopping App</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/boostrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
@@ -32,7 +32,7 @@
             </div>
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
               <div class="site-logo">
-                <a href="index.html" class="js-logo-clone">DJSHOP</a>
+                <a href="index.html" class="js-logo-clone">Djshop</a>
               </div>
             </div>
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
@@ -72,7 +72,7 @@
             <li><a href="{% url 'login' %}">Log In</a></li>
             {% endif %}
             <li><a href="about.html">About</a></li>
-            <li><a href="shop.html">Shop</a></li>
+            <li><a href="{% url 'shop' %}">Shop</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -80,26 +80,15 @@
     </header>
 
 {% if messages %}
-    {% for message in messages %} 
-    <div class="alert alert-warning" role="alert">
-            {{ message }}!
-    </div>
-        
-    {% endfor %}
-{% endif %}
-    {% block content %}{% endblock %}
-
-    <div class="site-section block-3 site-blocks-2 bg-light">
-      <div class="row">
-        <div class="col-md-12">
-         
-          </div>
-        </div>
-      </div>
-    </div>
+  {% for message in messages %} 
+  <div class="alert alert-warning" role="alert">
+    {{ message }}!
   </div>
+  {% endfor %}
+{% endif %}
+
+{% block content %}{% endblock %}
         
-            
   <footer class="site-footer border-top">
     <div class="container">
       <div class="row">             
@@ -127,13 +116,14 @@
   </footer>
   </div>
             
-              <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-              <script src="{% static 'js/jquery-ui.js' %}"></script>
-              <script src="{% static 'js/popper.min.js' %}"></script>
-              <script src="{% static 'js/bootstrap.min.js' %}"></script>
-              <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-              <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
-              <script src="{% static 'js/aos.js' %}"></script>
-              <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/jquery-ui.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
 </body>
 </html>
