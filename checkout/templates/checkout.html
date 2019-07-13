@@ -8,6 +8,8 @@
             <div class="col-md-6 mb-5 mb-md-0">
               <h2 class="h3 mb-3 text-black">Billing Details</h2>
               <div class="p-3 p-lg-5 border">
+                  <form enctype="multipart/form-data" action="{% url 'index' %}" method="POST">
+                    {% csrf_token %} 
                     <div class="form-group">
 			<div class="col-md-12">
                             <label for="c_name" class="text-black">{{ order_form.full_name.label_tag}}<span class="text-danger"> *</span></label>
@@ -132,16 +134,15 @@
                     </div>
   
                     <div class="form-group">
-                        <a href="{% url 'index' %}"> <button class="btn btn-primary btn-lg py-3 btn-block">Place Order</button></a>
+                       <input type="submit" class="btn btn-primary btn-lg py-3 btn-block" value="Place Order">
                     </div>
-  
+                  </form>
                   </div>
                 </div>
               </div>
   
             </div>
           </div>
-          <!-- </form> -->
         </div>
       </div>
 {% endblock %}
